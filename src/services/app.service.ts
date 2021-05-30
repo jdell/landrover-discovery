@@ -27,11 +27,12 @@ export class AppService {
   getIndirectLands(companyId: string): Land[] {
     const initialValue = []; 
      // If we want ALL lands -direct+indirect-, we could initialize the array 
-     // with [...getDirectLands(companyId) ])
+     // with [...getDirectLands(companyId) ]) and remove the call from line 34
 
     const lands = this.companies.reduce((acc, item)=> {
         if (item.parentId === companyId) {
             acc.push(...this.getDirectLands(item.id))
+            acc.push(...this.getIndirectLands(item.id))
         }
         return acc;
     }, initialValue);

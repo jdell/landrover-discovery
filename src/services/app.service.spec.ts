@@ -13,6 +13,9 @@ class MockCompanyProvider {
     },{
       id: 'R652026353427',
       parentId: 'R590980645905'
+    },{
+      id: 'R6520263534123',
+      parentId: 'R652026353427'
     }];
   }
 }
@@ -36,6 +39,10 @@ class MockLandProvider {
         landId: 'T100075985035',
         companyId: 'R652026353427',
       },
+      {
+        landId: 'T100075985123',
+        companyId: 'R6520263534123',
+      }
     ];
   }
 }
@@ -75,7 +82,7 @@ describe('AppService', () => {
 
     it('should return indirect lands', () => {
       const lands = service.getIndirectLands('R590980645905');
-      expect(lands.length).toEqual(2);
+      expect(lands.length).toEqual(3); // 2 sub-companies + 1 sub-sub company
     });
   });
 });
